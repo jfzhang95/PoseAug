@@ -1,7 +1,7 @@
-# PoseAug: A Differentiable Pose Augmentation Framework for 3D Human PoseEstimation
+# PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation
 Code repository for the paper:
 
-**PoseAug: A Differentiable Pose Augmentation Framework for 3D Human PoseEstimation.**
+**PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation**
 
 [Kehong Gong](https://www.ece.nus.edu.sg/lv/index.html)\*, [Jianfeng Zhang](https://jeff95.me/)\*, [Jiashi Feng](https://sites.google.com/site/jshfeng/)
 
@@ -22,6 +22,6 @@ If you  find this code useful for your research, please consider citing the foll
     }
 
 ### Acknowledgements
-This code uses ([SimpleBL](https://github.com/una-dinosauria/3d-pose-baseline), [SemGCN](https://github.com/garyzhao/SemGCN), [VPose3D](https://github.com/facebookresearch/VideoPose3D) and [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks)) as backbone. We gratefully appreciate the impact these research works had on our work. If you use our code, please consider citing the original papers as well.
+This code uses ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBL](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks) and [VPose3D](https://github.com/facebookresearch/VideoPose3D)) as backbone. We gratefully appreciate the impact these libraries had on our work. If you use our code, please consider citing the original papers as well.
 
  
