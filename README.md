@@ -5,7 +5,7 @@ Code repository for the paper:
 CVPR 2021 (oral presentation)  
 [[paper (coming soon)](https://jeff95.me/)] [[project page (coming soon)](https://jeff95.me/)]
 
-![alt text](assets/teaser.png)
+![alt text](assets/teaser_final.png)
 
 ### Citation
 If you  find this code useful for your research, please consider citing the following paper:
