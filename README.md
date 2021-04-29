@@ -7,7 +7,20 @@ CVPR 2021 (oral presentation)
 
 ![alt text](assets/teaser_final.png)
 
-### Citation
+<table style="border:0px">
+   <tr>
+       <td><img src="assets/demo1.gif" frame=void rules=none></td>
+       <td><img src="assets/demo2.gif" frame=void rules=none></td>
+   </tr>
+</table>
+
+<table style="border:0px">
+   <tr>
+       <td><img src="assets/sub_outdoors_fencing.gif" frame=void rules=none></td>
+   </tr>
+</table>
+
+## Citation
 If you  find this code useful for your research, please consider citing the following paper:
 
     @inproceedings{gong2021poseaug,
