@@ -3,7 +3,7 @@ Code repository for the paper:
 **PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation**  
 [Kehong Gong](https://www.ece.nus.edu.sg/lv/index.html)\*, [Jianfeng Zhang](https://jeff95.me/)\*, [Jiashi Feng](https://sites.google.com/site/jshfeng/)  
 CVPR 2021 (oral presentation)  
-[[paper (coming soon)](https://jeff95.me/)] [[project page (coming soon)](https://jeff95.me/)]
+[[paper](https://arxiv.org/pdf/2105.02465.pdf)] [[project page (coming soon)](https://jeff95.me/)]
 
 ![alt text](assets/teaser_final.png)
 
