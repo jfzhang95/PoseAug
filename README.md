@@ -20,6 +20,102 @@ CVPR 2021 (oral presentation)
    </tr>
 </table>
 
+
+## Installation
+The experiments are conducted on Ubuntu (16.04), with Python version (3.6.9), and PyTorch version (1.0.1.post2).
+
+To setup the environment:
+```sh
+cd PoseAug
+conda create -n poseaugEnv python=3.6.9
+conda activate poseaugEnv
+pip install -r requirements.txt
+```
+
+## Prepare dataset
+* Please follow the `DATASETS.md` to get the data ready.
+
+## Run training code  
+* There are 32 experiments in total (16 for baseline training, 16 for PoseAug training), 
+including four pose estimators ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBaseline](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks), [VideoPose](https://github.com/facebookresearch/VideoPose3D))
+and four 2D pose settings (Ground Truth, CPN, DET, HR-Net).
+* The training procedure contains two steps: pretrain the baseline model and train the model with PoseAug.  
+
+To pretrain the baseline model, 
+```sh
+# gcn
+python3 run_baseline.py --note pretrain --dropout 0 --lr 2e-2 --epochs 100 --posenet_name 'gcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints gt
+python3 run_baseline.py --note pretrain --dropout 0 --lr 2e-2 --epochs 100 --posenet_name 'gcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints cpn_ft_h36m_dbb
+python3 run_baseline.py --note pretrain --dropout 0 --lr 2e-2 --epochs 100 --posenet_name 'gcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints detectron_ft_h36m
+python3 run_baseline.py --note pretrain --dropout 0 --lr 2e-2 --epochs 100 --posenet_name 'gcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints hr
+
+# videopose
+python3 run_baseline.py --note pretrain --lr 1e-3 --posenet_name 'videopose' --checkpoint './checkpoint/pretrain_baseline' --keypoints gt
+python3 run_baseline.py --note pretrain --lr 1e-3 --posenet_name 'videopose' --checkpoint './checkpoint/pretrain_baseline' --keypoints cpn_ft_h36m_dbb
+python3 run_baseline.py --note pretrain --lr 1e-3 --posenet_name 'videopose' --checkpoint './checkpoint/pretrain_baseline' --keypoints detectron_ft_h36m
+python3 run_baseline.py --note pretrain --lr 1e-3 --posenet_name 'videopose' --checkpoint './checkpoint/pretrain_baseline' --keypoints hr
+
+# mlp
+python3 run_baseline.py --note pretrain --lr 1e-3 --stages 2 --posenet_name 'mlp' --checkpoint './checkpoint/pretrain_baseline' --keypoints gt
+python3 run_baseline.py --note pretrain --lr 1e-3 --stages 2 --posenet_name 'mlp' --checkpoint './checkpoint/pretrain_baseline' --keypoints cpn_ft_h36m_dbb
+python3 run_baseline.py --note pretrain --lr 1e-3 --stages 2 --posenet_name 'mlp' --checkpoint './checkpoint/pretrain_baseline' --keypoints detectron_ft_h36m
+python3 run_baseline.py --note pretrain --lr 1e-3 --stages 2 --posenet_name 'mlp' --checkpoint './checkpoint/pretrain_baseline' --keypoints hr
+
+# st-gcn
+python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints gt
+python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints cpn_ft_h36m_dbb
+python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints detectron_ft_h36m
+python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints hr
+# note: for st-gcn, the baseline use the default dropout setting used in the original code.
+
+```
+To train the model with PoseAug:
+```sh
+# gcn
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'gcn' --lr_p 1e-3 --checkpoint './checkpoint/poseaug' --keypoints gt
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'gcn' --lr_p 1e-3 --checkpoint './checkpoint/poseaug' --keypoints cpn_ft_h36m_dbb
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'gcn' --lr_p 1e-3 --checkpoint './checkpoint/poseaug' --keypoints detectron_ft_h36m
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'gcn' --lr_p 1e-3 --checkpoint './checkpoint/poseaug' --keypoints hr
+
+# video
+python3 run_poseaug.py --note poseaug --posenet_name 'videopose' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints gt
+python3 run_poseaug.py --note poseaug --posenet_name 'videopose' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints cpn_ft_h36m_dbb
+python3 run_poseaug.py --note poseaug --posenet_name 'videopose' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints detectron_ft_h36m
+python3 run_poseaug.py --note poseaug --posenet_name 'videopose' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints hr
+
+# mlp
+python3 run_poseaug.py --note poseaug --posenet_name 'mlp' --lr_p 1e-4 --stages 2 --checkpoint './checkpoint/poseaug' --keypoints gt
+python3 run_poseaug.py --note poseaug --posenet_name 'mlp' --lr_p 1e-4 --stages 2 --checkpoint './checkpoint/poseaug' --keypoints cpn_ft_h36m_dbb
+python3 run_poseaug.py --note poseaug --posenet_name 'mlp' --lr_p 1e-4 --stages 2 --checkpoint './checkpoint/poseaug' --keypoints detectron_ft_h36m
+python3 run_poseaug.py --note poseaug --posenet_name 'mlp' --lr_p 1e-4 --stages 2 --checkpoint './checkpoint/poseaug' --keypoints hr
+
+# st-gcn
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints gt
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints cpn_ft_h36m_dbb
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints detectron_ft_h36m
+python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints hr
+
+```
+All the checkpoints, evaluation results and logs would be saved to `./checkpoint`.
+
+To monitor the PoseAug training process using tensorboard:
+```sh
+cd ./checkpoint/poseaug
+tensorboard --logdir=/path/to/eventfile
+```
+
+### Comment:
+* For simplicity, all the hyper-param are the same. If you want to explore better performance for specific setting, please try changing the hyper-param. 
+* The GAN training may collapse, change the hyper-param (e.g., random_seed) and re-train the models will solve the problem.
+
+
+## Run evaluation code
+```sh
+python3 run_evaluate.py --posenet_name 'videopose' --keypoints gt --evaluate '/path/to/checkpoint'
+```
+We provide a `checkpoint/PoseAug_result_summary.ipynb` which can generate the result summary table for all 16 experiments.
+
+
 ## Citation
 If you  find this code useful for your research, please consider citing the following paper:
 
@@ -30,5 +126,5 @@ If you  find this code useful for your research, please consider citing the foll
       year        = {2021}
     }
 
-### Acknowledgements
+## Acknowledgements
 This code uses ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBL](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks) and [VPose3D](https://github.com/facebookresearch/VideoPose3D)) as backbone. We gratefully appreciate the impact these libraries had on our work. If you use our code, please consider citing the original papers as well.
