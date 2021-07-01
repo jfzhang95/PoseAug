@@ -9,6 +9,7 @@ __pycache__/
 *.so
 
 .history/
+.idea/
 
 # Distribution / packaging
 .Python

@@ -149,7 +149,7 @@ def get_discriminator_accuracy(prediction, label):
 
 
 import copy
-# To store 50 generated image in a pool and sample from it when it is full
+# To store data in a pool and sample from it when it is full
 # Shrivastava et al’s strategy
 class Sample_from_Pool(object):
     def __init__(self, max_elements=4096):

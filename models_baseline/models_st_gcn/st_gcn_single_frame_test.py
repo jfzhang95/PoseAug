@@ -7,7 +7,7 @@ https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Po
 the ST-GCN model for single frame setting.
 Note: the original ST-GCN training strategy is carefully deasigned by two stages, 
 with different loss, training parameter, learning rate. 
-Here we only use it as a baseline model, which we follow the same training strategy with other three model for convinience.
+Here we only use it as a baseline model, which we follow the same training strategy with other three model for convenience.
 '''
 
 from models_baseline.models_st_gcn.st_gcn_utils.tgcn import st_gcn_ConvTemporalGraphical

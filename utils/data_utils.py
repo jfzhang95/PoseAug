@@ -28,7 +28,7 @@ def read_3d_data(dataset):
             positions_3d = []
             for cam in anim['cameras']:
                 pos_3d = world_to_camera(anim['positions'], R=cam['orientation'], t=cam['translation'])
-                # pos_3d[:, :] -= pos_3d[:, :1]  # Remove global offset #kehong: keep this, remove at model level.
+                # pos_3d[:, :] -= pos_3d[:, :1]  # keep this, remove at model training.
                 positions_3d.append(pos_3d)
             anim['positions_3d'] = positions_3d
 

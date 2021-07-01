@@ -78,7 +78,7 @@ class TemporalModelBase(nn.Module):
         if len(x.shape) == 2:
             x = x.view(x.shape[0], 16, 2)
         # pre-processing
-        x = x.view(x.shape[0], 1, 16, 2)  # 0924
+        x = x.view(x.shape[0], 1, 16, 2)
 
         assert len(x.shape) == 4
         assert x.shape[-2] == self.num_joints_in
@@ -94,7 +94,7 @@ class TemporalModelBase(nn.Module):
         x = x.view(sz[0], -1, self.num_joints_out, 3)
 
         # post process
-        x = x.view(sz[0], self.num_joints_out * 3)  # 0924
+        x = x.view(sz[0], self.num_joints_out * 3)
         # out: 15 joint ==> 16 joint
         out = torch.cat([torch.zeros_like(x)[:,:3], x], 1).view(sz[0], 16, 3)  # Pad hip joint (0,0,0)
         return out

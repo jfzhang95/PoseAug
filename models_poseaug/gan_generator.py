@@ -299,7 +299,6 @@ class BLGenerator(nn.Module):
 
 def random_bl_aug(x):
     '''
-    input pose3D。
     :param x: nx16x3
     :return: nx16x3
     '''

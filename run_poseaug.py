@@ -93,7 +93,7 @@ def main(args):
         # Train for one epoch
         train_gan(args, poseaug_dict, data_dict, model_pos, criterion, fake_3d_sample, fake_2d_sample, summary, writer)
 
-        if summary.epoch > args.warmup:  # pretrain好的posenet需要等GAN生成的pose保真度好之后再involve到训练里面去。
+        if summary.epoch > args.warmup:
             train_posenet(model_pos, data_dict['train_fake2d3d_loader'], posenet_optimizer, criterion, device)
             h36m_p1, h36m_p2, dhp_p1, dhp_p2 = evaluate_posenet(args, data_dict, model_pos, model_pos_eval, device,
                                                                   summary, writer, tag='_fake')
