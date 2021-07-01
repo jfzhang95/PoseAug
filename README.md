@@ -22,24 +22,24 @@ CVPR 2021 (oral presentation)
 
 
 ## Installation
-The experiments are conducted on Ubuntu (16.04), with Python version (3.6.9), and PyTorch version (1.0.1.post2).
+The experiments are conducted on Ubuntu 16.04, with Python version 3.6.9, and PyTorch version 1.0.1.post2.
 
 To setup the environment:
 ```sh
 cd PoseAug
-conda create -n poseaugEnv python=3.6.9
-conda activate poseaugEnv
+conda create -n poseaug python=3.6.9
+conda activate poseaug
 pip install -r requirements.txt
 ```
 
 ## Prepare dataset
-* Please follow the `DATASETS.md` to get the data ready.
+* Please refer to [`DATASETS.md`](./DATASETS.md) for the preparation of the dataset files.
 
 ## Run training code  
 * There are 32 experiments in total (16 for baseline training, 16 for PoseAug training), 
 including four pose estimators ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBaseline](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks), [VideoPose](https://github.com/facebookresearch/VideoPose3D))
 and four 2D pose settings (Ground Truth, CPN, DET, HR-Net).
-* The training procedure contains two steps: pretrain the baseline model and train the model with PoseAug.  
+* The training procedure contains two steps: pretrain the baseline models and then train these baseline models with PoseAug.  
 
 To pretrain the baseline model, 
 ```sh
@@ -66,10 +66,10 @@ python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 's
 python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints cpn_ft_h36m_dbb
 python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints detectron_ft_h36m
 python3 run_baseline.py --note pretrain --dropout -1 --lr 1e-3 --posenet_name 'stgcn' --checkpoint './checkpoint/pretrain_baseline' --keypoints hr
-# note: for st-gcn, the baseline use the default dropout setting used in the original code.
+# Note: for st-gcn, dropout is set to -1, representing the default dropout setting used in the original code (different layers using different dropout values).
 
 ```
-To train the model with PoseAug:
+To train the baseline model with PoseAug:
 ```sh
 # gcn
 python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'gcn' --lr_p 1e-3 --checkpoint './checkpoint/poseaug' --keypoints gt
@@ -96,16 +96,14 @@ python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 
 python3 run_poseaug.py --note poseaug --dropout 0 --posenet_name 'stgcn' --lr_p 1e-4 --checkpoint './checkpoint/poseaug' --keypoints hr
 
 ```
-All the checkpoints, evaluation results and logs would be saved to `./checkpoint`.
-
-To monitor the PoseAug training process using tensorboard:
+All the checkpoints, evaluation results and logs will be saved to `./checkpoint`. You can use tensorboard to monitor the training process:
 ```sh
 cd ./checkpoint/poseaug
 tensorboard --logdir=/path/to/eventfile
 ```
 
 ### Comment:
-* For simplicity, all the hyper-param are the same. If you want to explore better performance for specific setting, please try changing the hyper-param. 
+* For simplicity, hyper-param for different 2D pose settings are the same. If you want to explore better performance for specific setting, please try changing the hyper-param. 
 * The GAN training may collapse, change the hyper-param (e.g., random_seed) and re-train the models will solve the problem.
 
 
@@ -113,7 +111,7 @@ tensorboard --logdir=/path/to/eventfile
 ```sh
 python3 run_evaluate.py --posenet_name 'videopose' --keypoints gt --evaluate '/path/to/checkpoint'
 ```
-We provide a `checkpoint/PoseAug_result_summary.ipynb` which can generate the result summary table for all 16 experiments.
+We provide a [`checkpoint/PoseAug_result_summary.ipynb`](./checkpoint/PoseAug_result_summary.ipynb), which can generate the result summary table for all 16 experiments.
 
 
 ## Citation
