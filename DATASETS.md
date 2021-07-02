@@ -40,7 +40,7 @@ cd ..
 * To download the HHR 2D pose, please follow the instruction of [EvoSkeleton](https://github.com/Nicholasli1995/EvoSkeleton/blob/master/docs/HHR.md) and download the `twoDPose_HRN_test.npy` and `twoDPose_HRN_train.npy`, 
 and convert them to the same format as `data_2d_h36m_gt.npz`.
 
-* You can also download our preprocessed 16 joints detect 2D from [detect2D](https://drive.google.com/drive/folders/1jVyz9HdT0Jq3-YPZnOQ6GEcOVDRZAifK?usp=sharing) directly. 
+* You can also download our [pre-processed joints files](https://drive.google.com/drive/folders/1jVyz9HdT0Jq3-YPZnOQ6GEcOVDRZAifK?usp=sharing). 
 
 Until here, you will have a data folder:
    ```
