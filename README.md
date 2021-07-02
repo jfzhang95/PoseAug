@@ -34,7 +34,6 @@ pip install -r requirements.txt
 
 ## Prepare dataset
 * Please refer to [`DATASETS.md`](./DATASETS.md) for the preparation of the dataset files. 
-* Note the preprocess code is different from other works as we use 16 joints setting, please use [`DATASETS.md`](./DATASETS.md) for data preparation. 
 
 ## Run training code  
 * There are 32 experiments in total (16 for baseline training, 16 for PoseAug training), 

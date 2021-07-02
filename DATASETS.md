@@ -5,7 +5,8 @@ The code for Human3.6M data preparation is borrowed from [VideoPose3D](https://g
 ## Prepare the ground truth 2D 3D data pair for Human3.6
 * Setup from original source (recommended)
     * Please follow the instruction from [VideoPose3D](https://github.com/facebookresearch/VideoPose3D/blob/master/DATASETS.md) to process the data from the official [Human3.6M](http://vision.imar.ro/human3.6m/) website.
-
+    * Then generate the 2D and 3D data by `prepare_data_h36m.py`. (Note that `prepare_data_h36m.py` is borrowed from [SemGCN](https://github.com/garyzhao/SemGCN) with 16 joints configuration, which is slightly different from [VideoPose3D](https://github.com/facebookresearch/VideoPose3D) with 17 joints configuration)
+    
 * Setup from preprocessed dataset
     * Get preprocessed `h36m.zip`: 
       Please follow the instruction from [SemGCN](https://github.com/garyzhao/SemGCN/blob/master/data/README.md) to get the `h36m.zip`.
