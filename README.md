@@ -1,3 +1,8 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/weakly-supervised-3d-human-pose-estimation-on)](https://paperswithcode.com/sota/weakly-supervised-3d-human-pose-estimation-on?p=paper/poseaug-a-differentiable-pose-augmentation)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/monocular-3d-human-pose-estimation-on-human3)](https://paperswithcode.com/sota/monocular-3d-human-pose-estimation-on-human3?p=poseaug-a-differentiable-pose-augmentation)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/3d-human-pose-estimation-on-human36m)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-human36m?p=poseaug-a-differentiable-pose-augmentation)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/3d-human-pose-estimation-on-mpi-inf-3dhp)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-mpi-inf-3dhp?p=poseaug-a-differentiable-pose-augmentation)
+
 # PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation
 Code repository for the paper:  
 **PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation**  
