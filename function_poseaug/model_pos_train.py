@@ -21,7 +21,7 @@ def train_posenet(model_pos, data_loader, optimizer, criterion, device):
     end = time.time()
 
 
-    bar = Bar('Train pose estimator', max=len(data_loader))
+    bar = Bar('Train posenet', max=len(data_loader))
     for i, (targets_3d, inputs_2d, _, _) in enumerate(data_loader):
         # Measure data loading time
         data_time.update(time.time() - end)
