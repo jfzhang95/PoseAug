@@ -1,16 +1,21 @@
-from __future__ import print_function, absolute_import, division
+# Copyright (c) 2018-present, Facebook, Inc.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+#
 
 import argparse
 import os
 import zipfile
 import numpy as np
+import h5py
 from glob import glob
 from shutil import rmtree
 
 import sys
 
 sys.path.append('../')
-
 from common.h36m_dataset import Human36mDataset
 from common.camera import world_to_camera, project_to_2d, image_coordinates
 from utils.utils import wrap
@@ -26,11 +31,16 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Human3.6M dataset downloader/converter')
 
-    # Default: convert dataset preprocessed by Martinez et al. in https://github.com/una-dinosauria/3d-pose-baseline
+    # Convert dataset preprocessed by Martinez et al. in https://github.com/una-dinosauria/3d-pose-baseline
     parser.add_argument('--from-archive', default='', type=str, metavar='PATH', help='convert preprocessed dataset')
 
-    # Alternatively, convert dataset from original source (the Human3.6M dataset path must be specified manually)
+    # Convert dataset from original source, using files converted to .mat (the Human3.6M dataset path must be specified manually)
+    # This option requires MATLAB to convert files using the provided script
     parser.add_argument('--from-source', default='', type=str, metavar='PATH', help='convert original dataset')
+
+    # Convert dataset from original source, using original .cdf files (the Human3.6M dataset path must be specified manually)
+    # This option does not require MATLAB, but the Python library cdflib must be installed
+    parser.add_argument('--from-source-cdf', default='', type=str, metavar='PATH', help='convert original dataset')
 
     args = parser.parse_args()
 
@@ -49,9 +59,6 @@ if __name__ == '__main__':
 
         print('Converting...')
         output = {}
-
-        import h5py
-
         for subject in subjects:
             output[subject] = {}
             file_list = glob('h36m/' + subject + '/MyPoses/3D_positions/*.h5')
@@ -92,10 +99,41 @@ if __name__ == '__main__':
                     continue  # Discard corrupted video
 
                 # Use consistent naming convention
-                canonical_name = action.replace('TakingPhoto', 'Photo').replace('WalkingDog', 'WalkDog')
+                canonical_name = action.replace('TakingPhoto', 'Photo') \
+                    .replace('WalkingDog', 'WalkDog')
 
                 hf = loadmat(f)
                 positions = hf['data'][0, 0].reshape(-1, 32, 3)
+                positions /= 1000  # Meters instead of millimeters
+                output[subject][canonical_name] = positions.astype('float32')
+
+        print('Saving...')
+        np.savez_compressed(output_filename, positions_3d=output)
+
+        print('Done.')
+
+    elif args.from_source_cdf:
+        print('Converting original Human3.6M dataset from', args.from_source_cdf, '(CDF files)')
+        output = {}
+
+        import cdflib
+
+        for subject in subjects:
+            output[subject] = {}
+            file_list = glob(args.from_source_cdf + '/' + subject + '/MyPoseFeatures/D3_Positions/*.cdf')
+            assert len(file_list) == 30, "Expected 30 files for subject " + subject + ", got " + str(len(file_list))
+            for f in file_list:
+                action = os.path.splitext(os.path.basename(f))[0]
+
+                if subject == 'S11' and action == 'Directions':
+                    continue  # Discard corrupted video
+
+                # Use consistent naming convention
+                canonical_name = action.replace('TakingPhoto', 'Photo') \
+                    .replace('WalkingDog', 'WalkDog')
+
+                hf = cdflib.CDF(f)
+                positions = hf['Pose'].reshape(-1, 32, 3)
                 positions /= 1000  # Meters instead of millimeters
                 output[subject][canonical_name] = positions.astype('float32')
 
