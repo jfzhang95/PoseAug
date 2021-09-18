@@ -44,7 +44,8 @@ pip install -r requirements.txt
 * There are 32 experiments in total (16 for baseline training, 16 for PoseAug training), 
 including four pose estimators ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBaseline](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks), [VideoPose](https://github.com/facebookresearch/VideoPose3D))
 and four 2D pose settings (Ground Truth, CPN, DET, HR-Net).
-* The training procedure contains two steps: pretrain the baseline models and then train these baseline models with PoseAug.  
+* The training procedure contains two steps: pretrain the baseline models and then train these baseline models with PoseAug.
+* We also provide pretrained baseline and poseaug models ([link](https://drive.google.com/drive/folders/1mLttbyZxsRdN5kw1IRdzZozyfndhV3Wh)) for further training and evaluation.
 
 To pretrain the baseline model, 
 ```sh
@@ -130,4 +131,4 @@ If you  find this code useful for your research, please consider citing the foll
     }
 
 ## Acknowledgements
-This code uses ([SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBL](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks) and [VPose3D](https://github.com/facebookresearch/VideoPose3D)) as backbone. We gratefully appreciate the impact these libraries had on our work. If you use our code, please consider citing the original papers as well.
+This code uses [SemGCN](https://github.com/garyzhao/SemGCN), [SimpleBL](https://github.com/una-dinosauria/3d-pose-baseline), [ST-GCN](https://github.com/vanoracai/Exploiting-Spatial-temporal-Relationships-for-3D-Pose-Estimation-via-Graph-Convolutional-Networks) and [VPose3D](https://github.com/facebookresearch/VideoPose3D) as backbone. We gratefully appreciate the impact these libraries had on our work. If you use our code, please consider citing the original papers as well.
