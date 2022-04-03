@@ -3,6 +3,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/3d-human-pose-estimation-on-human36m)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-human36m?p=poseaug-a-differentiable-pose-augmentation)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/poseaug-a-differentiable-pose-augmentation/3d-human-pose-estimation-on-mpi-inf-3dhp)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-mpi-inf-3dhp?p=poseaug-a-differentiable-pose-augmentation)
 
+
 # PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation
 Code repository for the paper:  
 **PoseAug: A Differentiable Pose Augmentation Framework for 3D Human Pose Estimation**  
@@ -119,6 +120,8 @@ python3 run_evaluate.py --posenet_name 'videopose' --keypoints gt --evaluate '/p
 ```
 We provide a [`checkpoint/PoseAug_result_summary.ipynb`](./checkpoint/PoseAug_result_summary.ipynb), which can generate the result summary table for all 16 experiments.
 
+## Run inference code
+We provide an inference code [here](https://github.com/Garfield-kh/PoseTriplet/tree/main/estimator_inference). Please follow the instruction and download PoseAug's pretrained model for inference on images/videos.
 
 ## Citation
 If you  find this code useful for your research, please consider citing the following paper:
